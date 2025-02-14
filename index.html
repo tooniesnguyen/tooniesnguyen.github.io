@@ -459,16 +459,22 @@
 </div>
 
 <script>
-    const text = "Valentine vui vẻ nha, Princess ^^";
+    const text = "Valentine vui vẻ nha, Princess ^^\nChúc em một ngày tràn ngập niềm vui và những điều ngọt ngào nhất.\nMong em luôn hạnh phúc, bình yên và rạng rỡ như chính em vẫn thế. 💖";
+
+
     const container = document.getElementById("text-container");
 
     let index = 0;
 
     function typeEffect() {
         if (index < text.length) {
-            container.innerHTML += text.charAt(index); // Hiện từng ký tự
+            if (text.charAt(index) === "\n") {
+                container.innerHTML += "<br>"; // Xuống dòng đúng
+            } else {
+                container.innerHTML += text.charAt(index); // Hiện từng ký tự
+            }
             index++;
-            setTimeout(typeEffect, 100); // Thời gian delay giữa các ký tự (0.1s)
+            setTimeout(typeEffect, 100); // Điều chỉnh tốc độ xuất hiện (0.1s)
         }
     }
 
