@@ -469,12 +469,12 @@
     function typeEffect() {
         if (index < text.length) {
             if (text.charAt(index) === "\n") {
-                container.innerHTML += "<br>"; // Xuống dòng đúng
+                container.innerHTML += "<br>"; 
             } else {
-                container.innerHTML += text.charAt(index); // Hiện từng ký tự
+                container.innerHTML += text.charAt(index); 
             }
             index++;
-            setTimeout(typeEffect, 100); // Điều chỉnh tốc độ xuất hiện (0.1s)
+            setTimeout(typeEffect, 100); 
         }
     }
 
