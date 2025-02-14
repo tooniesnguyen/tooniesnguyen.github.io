@@ -443,22 +443,36 @@
         // ]]>
     </script>
 
-<div class="center-text"
+<div id="text-container" 
     style="
-          width: 100%;
-          color: #FF9AA2;
-          height: 100%;
-          font-size: 42px;
-          font-style: italic;
-          display: flex;
-          flex-direction: column; /* Xếp chữ theo cột để giữ căn giữa */
-          align-items: center;
-          justify-content: center;
-          margin-bottom: 10px;
-          text-align: center;">
-    Valentine vui vẻ nha  
-    <br>  
-    Princess ^^
+        width: 100%;
+        color: #FF9AA2;
+        height: 100%;
+        font-size: 42px;
+        font-style: italic;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-bot: 15px;
+        text-align: center;">
+</div>
 
+<script>
+    const text = "Valentine vui vẻ nha, Princess ^^";
+    const container = document.getElementById("text-container");
+
+    let index = 0;
+
+    function typeEffect() {
+        if (index < text.length) {
+            container.innerHTML += text.charAt(index); // Hiện từng ký tự
+            index++;
+            setTimeout(typeEffect, 100); // Thời gian delay giữa các ký tự (0.1s)
+        }
+    }
+
+    typeEffect();
+</script>
  </BODY>
 </HTML>
