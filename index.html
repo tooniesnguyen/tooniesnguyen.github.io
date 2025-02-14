@@ -457,10 +457,46 @@
         margin-bot: 15px;
         text-align: center;">
 </div>
+<style>body {
+        background-color: #fff5f8; /* Màu nền nhẹ nhàng */font-family: Arial, sans-serif;
+        overflow: hidden; /* Tránh thanh cuộn */
+    }
+    
+    #text-container {
+        width: 100%;
+        color: #FF9AA2;
+        font-size: 24px;
+        font-style: italic;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin-bot: 15px;
+        white-space: pre-line;
+    }
 
+    .chocolate {
+        position: absolute;
+        bottom: -50px; /* Xuất phát từ dưới màn hình */font-size: 50px; /* Kích thước viên socola 🍫 */opacity: 0;
+        animation: floatUp linear forwards;
+    }
+
+    @keyframes floatUp {
+        0% {
+            opacity: 0;
+            transform: translateY(0);
+        }
+        10% {
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(-100vh); /* Bay lên hết màn hình */opacity: 0;
+        }
+    }
+</style>
 <script>
     const text = "Valentine vui vẻ nha, Princess ^^\nChúc em một ngày tràn ngập niềm vui và những điều ngọt ngào nhất.\nMong em luôn hạnh phúc, bình yên và rạng rỡ như chính em vẫn thế. 💖";
-
 
     const container = document.getElementById("text-container");
 
@@ -469,12 +505,37 @@
     function typeEffect() {
         if (index < text.length) {
             if (text.charAt(index) === "\n") {
-                container.innerHTML += "<br>"; 
+                container.innerHTML += "<br>"; // Xuống dòng đúng
             } else {
-                container.innerHTML += text.charAt(index); 
+                container.innerHTML += text.charAt(index);
             }
             index++;
-            setTimeout(typeEffect, 100); 
+            setTimeout(typeEffect, 100);
+        } else {
+            setTimeout(spawnChocolate, 500); // Gọi hiệu ứng socola sau khi chữ xong
+        }
+    }
+
+    function spawnChocolate() {
+        for (let i = 0; i < 80; i++) { // Tạo nhiều viên socola 🍫 bay lên
+            let chocolate = document.createElement("div");
+            chocolate.innerHTML = "🍫"; // Ký tự socola
+            chocolate.classList.add("chocolate");
+            document.body.appendChild(chocolate);
+
+            // Đặt vị trí ngẫu nhiên
+            let randomX = Math.random() * 100; // Vị trí ngang
+            let randomDelay = Math.random() * 2; // Độ trễ xuất hiện
+            let randomDuration = Math.random() * 3 + 2; // Thời gian bay lên
+
+            chocolate.style.left = `${randomX}vw`; 
+            chocolate.style.animationDuration = `${randomDuration}s`;
+            chocolate.style.animationDelay = `${randomDelay}s`;
+
+            // Xóa socola sau khi bay lên
+            setTimeout(() => {
+                chocolate.remove();
+            }, (randomDuration + randomDelay) * 1000);
         }
     }
 
